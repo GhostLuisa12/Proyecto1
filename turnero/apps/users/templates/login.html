@@ -1,0 +1,29 @@
+{% extends 'layoutLogin.html' %}
+{% block cuerpo %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="card" style="  margin-top:100px">
+                <div class="card-header  card-header-primary text-center text-white" style="background-color: #d20e65; ">
+                    LOGIN
+                </div>
+                <div class="card-body">
+                    <form method="post" id="loginform" class="form">
+                        {% csrf_token %}
+                        <h5 class="card-title">Ingrese a la plataforma</h5>
+                        <input type="text" name="username" class="form-control mb-2 " placeholder="Nombre de usuario">
+                        <input type="password" name="password" class="form-control " placeholder="Password">
+                        <a href="{% url 'index'  %}">¿Deseas acceder como anónimo?</a>
+                        <div class="content" style="text-align: center;">
+                            <button type="submit" value="enviar" class="btn btn-primary btn-lg mt-2">
+                                Acceder
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock cuerpo%}

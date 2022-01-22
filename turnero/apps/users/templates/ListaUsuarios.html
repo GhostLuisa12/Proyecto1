@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+{% block titulo %}Listado De Usuarios{% endblock titulo %}
+    {% block cuerpo %}
+
+
+
+<div class="container">
+    <div>
+
+        <div class="card " style="width: 100%;  margin-top:80px">
+            <div class="card-header card-header-primary text-center text-white" style="background-color: #d20e65;">
+                <h4 class="card-title">Usuarios Creados </h4>
+            </div>
+
+            <div class="card-body">
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>NOMBRE</th>
+                                <th>APELLIDO</th>
+                                <th>CELULAR</th>
+                                <th>IDENTIFICACIÓN</th>
+                                <th>Es OPERATIVO</th>
+                                <th>FOTO</th>
+                                <th>OPCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for usuario in usuarios %} 
+                            <tr>
+                                <td>{{ usuario.name }}</td>
+                                <td>{{ usuario.lastname }}</td>
+                                <td>{{ usuario.phone }}</td>
+                                <td>{{ usuario.idNumber}}</td>
+                                <td>{{ usuario.isStaff }}</td>
+                                <td>
+                                    <div class="align-items-stretch">
+                                        <img src='{{usuario.picture.url}}' alt="" class="avatar-img img-responsive img-thumbnail">
+                                    </div>
+                                  </td>
+                                <td><a class="btn btn-primary "href="{% url 'editar_Usuario' usuario.id %}"><span class="material-icons-outlined">
+                                    edit
+                                    </span></a> <a class="btn btn-danger"href="{% url 'eliminar_Usuario' usuario.id %}"><span class="material-icons-outlined">
+                                    delete
+                                    </span></a></td>
+                            </tr>
+                          {% endfor %}  
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+        
+    </div>
+    <div class="content" style="text-align: right;">
+<a class ="btn btn-primary btn-lg" href="{% url 'crear_Usuario'  %}">Crear Usuario </a>    </div>
+</div>
+<style>
+    .avatar-img {
+    max-width: 120px;
+    max-height: 120px;
+    object-fit: cover;
+}
+</style>
+    {% endblock cuerpo %}
+
+    

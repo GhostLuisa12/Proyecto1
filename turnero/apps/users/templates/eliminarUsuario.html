@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block cuerpo %}
+
+<form method="post">
+    {% csrf_token %}
+    <h1>Desea eliminar a la persona {{object}}?</h1>
+    <button type="submit" class="btn-danger btn"name="button">CONFIRMAR</button>
+    <a class="btn-secondary btn" href="{% url 'listUsers' %}">CANCELAR</a>
+</form>
+{% endblock cuerpo %}

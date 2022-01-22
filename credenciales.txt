@@ -1,0 +1,7 @@
+Credenciales
+	Usuario no staff:
+		luisa@mail.com
+		clave Lu123456
+	Usuario Staff:
+		admin1
+		12345

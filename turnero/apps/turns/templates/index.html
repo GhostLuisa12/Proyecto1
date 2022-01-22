@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block titulo %}Listado De Turnos{% endblock titulo %}
+
+    {% block cuerpo %}
+    
+    <div class="container">
+        <div>
+    
+            <div class="card " style="width: 100%;  margin-top:80px">
+                <div class="card-header card-header-primary text-center text-white" style="background-color: #d20e65;">
+                    <h4 class="card-title">Usuarios Creados </h4>
+                </div>
+    
+                <div class="card-body">
+                    <div class="col-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Cod</th>
+                                    <th>NumCod</th>
+                                    <th>Estado</th>
+                                    <th>Usuario</th>
+                                    <th>Funcionario</th>
+                                    <th>OPCIONES</th>
+                                    {% if request.user.is_staff %}
+                                    <th>Cambiar estado</th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+    
+                                {% for turno in turnos %} 
+                                <tr>
+                                    <td>{{ turno.cod }}</td>
+                                    <td>{{ turno.numCod }}</td>
+                                    <td>{{ turno.state.name }}</td>
+                                    <td>{{ turno.user.name }}</td>
+                                    <td>{{ turno.userStaff.name }}</td>
+                                    <td><a class="btn btn-primary "href="{% url 'editar_turno' turno.id %}"><span class="material-icons-outlined">edit</span></a> 
+                                        <a class="btn btn-danger "href="{% url 'eliminar_turno' turno.id %}"><span class="material-icons-outlined">delete</span></a></td>
+                                    {% if request.user.is_staff %}
+                                    <td><a class="btn btn-success "href="{% url 'cambiarEstado' turno.id %}">cambiar estado</a> 
+                                    {% endif %}
+                                </tr>
+                              {% endfor %}  
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="content" style="text-align: right;">
+                        <a class ="btn btn-primary btn-lg" href="{% url 'crear_Turno'  %}">Crear Turno</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    {% endblock cuerpo %}
